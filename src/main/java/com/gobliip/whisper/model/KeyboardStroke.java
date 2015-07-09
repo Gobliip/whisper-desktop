@@ -2,72 +2,88 @@ package com.gobliip.whisper.model;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 /**
  * Created by lsamayoa on 7/8/15.
  */
-public class KeyboardStroke implements Comparable<KeyboardStroke> {
-    final private Instant when;
-    final private int keyCode;
-    final private char character;
+public class KeyboardStroke implements Comparable<KeyboardStroke>, Serializable {
 
-    public KeyboardStroke(Instant when, int keyCode, char character) {
-        this.when = when;
-        this.keyCode = keyCode;
-        this.character = character;
-    }
+	private static final long serialVersionUID = -6616435035824762655L;
 
-    public Instant getWhen() {
-        return when;
-    }
+	private Instant when;
+	private int keyCode;
+	private char character;
 
-    public int getKeyCode() {
-        return keyCode;
-    }
+	public KeyboardStroke(Instant when, int keyCode, char character) {
+		this.when = when;
+		this.keyCode = keyCode;
+		this.character = character;
+	}
 
-    public char getCharacter() {
-        return character;
-    }
+	public Instant getWhen() {
+		return when;
+	}
 
-    @Override
-    public int compareTo(KeyboardStroke stroke) {
-        long difference = this.when.toEpochMilli() - stroke.getWhen().toEpochMilli();
-        return (int) difference;
-    }
+	public void setWhen(Instant when) {
+		this.when = when;
+	}
 
+	public int getKeyCode() {
+		return keyCode;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+	public void setKeyCode(int keyCode) {
+		this.keyCode = keyCode;
+	}
 
-        KeyboardStroke stroke = (KeyboardStroke) o;
+	public char getCharacter() {
+		return character;
+	}
 
-        if (keyCode != stroke.keyCode) {
-            return false;
-        }
-        if (character != stroke.character) {
-            return false;
-        }
-        return when.equals(stroke.when);
+	public void setCharacter(char character) {
+		this.character = character;
+	}
 
-    }
+	@Override
+	public int compareTo(KeyboardStroke stroke) {
+		long difference = this.when.toEpochMilli()
+				- stroke.getWhen().toEpochMilli();
+		return (int) difference;
+	}
 
-    @Override
-    public int hashCode() {
-        int result = when.hashCode();
-        result = 31 * result + keyCode;
-        result = 31 * result + (int) character;
-        return result;
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this);
-    }
+		KeyboardStroke stroke = (KeyboardStroke) o;
+
+		if (keyCode != stroke.keyCode) {
+			return false;
+		}
+		if (character != stroke.character) {
+			return false;
+		}
+		return when.equals(stroke.when);
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = when.hashCode();
+		result = 31 * result + keyCode;
+		result = 31 * result + (int) character;
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
+	}
 }

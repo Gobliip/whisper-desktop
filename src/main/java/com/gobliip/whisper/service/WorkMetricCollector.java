@@ -40,7 +40,7 @@ public class WorkMetricCollector {
     }
 
     private int getMouseActions() {
-        return mouseRegistry.size();
+        return mouseRegistry.getSize();
     }
 
     private void flushRegistries(){
@@ -50,7 +50,7 @@ public class WorkMetricCollector {
 
 
     private int getKeyboardStrokes() {
-        return keyboardRegistry.size();
+        return keyboardRegistry.getSize();
     }
 
     protected void setLastCollection(Instant lastCollection){

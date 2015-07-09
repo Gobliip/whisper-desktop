@@ -2,18 +2,21 @@ package com.gobliip.whisper.model;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 /**
  * Created by lsamayoa on 7/8/15.
  */
-public class WorkMetric implements Comparable<WorkMetric>{
+public class WorkMetric implements Comparable<WorkMetric>, Serializable {
 
-    final private Instant start;
+	private static final long serialVersionUID = 8843675226913291752L;
+	
+	final private Instant start;
     final private Instant end;
     final private int keyboardStrokes;
     final private int mouseActions;
-
+    
     public WorkMetric(Instant start, Instant end, int keyboardStrokes, int mouseActions) {
         this.start = start;
         this.end = end;

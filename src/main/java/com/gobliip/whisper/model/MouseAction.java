@@ -2,13 +2,17 @@ package com.gobliip.whisper.model;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 /**
  * Created by lsamayoa on 7/8/15.
  */
-public class MouseAction implements Comparable<MouseAction> {
-    final private Instant when;
+public class MouseAction implements Comparable<MouseAction>, Serializable {
+    
+	private static final long serialVersionUID = -8815136721340021014L;
+	
+	final private Instant when;
     final private int x;
     final private int y;
 

@@ -1,37 +1,56 @@
 package com.gobliip.whisper.service;
 
-import org.springframework.beans.factory.DisposableBean;
-
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.jmx.export.annotation.ManagedAttribute;
+import org.springframework.jmx.export.annotation.ManagedOperation;
+import org.springframework.jmx.export.annotation.ManagedResource;
+
 /**
  * Created by lsamayoa on 7/8/15.
  */
-public class SetRegistry<T> implements DisposableBean{
-    private Set<T> registryStore = new ConcurrentSkipListSet<>();
+@ManagedResource
+public class SetRegistry<T> implements DisposableBean {
+	private Set<T> registryStore = new ConcurrentSkipListSet<>();
 
-    public void add(T register){
-        registryStore.add(register);
-    }
+	public void add(T register) {
+		registryStore.add(register);
+	}
 
-    public void flush(){
-        synchronized (this.registryStore) {
-            registryStore.clear();
-        }
-    }
+	public void flush() {
+		synchronized (this.registryStore) {
+			registryStore.clear();
+		}
+	}
 
-    public int size(){
-        return registryStore.size();
-    }
+	@ManagedAttribute
+	public int getSize() {
+		return registryStore.size();
+	}
 
-    public Set<T> getData(){
-        return new LinkedHashSet<>(registryStore);
-    }
+	@ManagedOperation
+	public Set<String> getMData(){
+		HashSet<String> result = new HashSet<String>();
+		synchronized (this.registryStore) {
+			for (Iterator<T> iterator = registryStore.iterator(); iterator.hasNext();) {
+				T data = iterator.next();
+				result.add(data.toString());
+			}
+		}
+		return result;
+	}
+	
+	public Set<T> getData() {
+		return new LinkedHashSet<>(registryStore);
+	}
 
-    @Override
-    public void destroy() throws Exception {
-        flush();
-    }
+	@Override
+	public void destroy() throws Exception {
+		flush();
+	}
 }

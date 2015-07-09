@@ -12,6 +12,7 @@ public class GlobalScreenFacade implements DisposableBean, InitializingBean{
 
 	public void addNativeKeyListener(NativeKeyListener listener){
 		GlobalScreen.addNativeKeyListener(listener);
+		
 	}
 
 	public void addNativeMouseListener(NativeMouseListener listener){
