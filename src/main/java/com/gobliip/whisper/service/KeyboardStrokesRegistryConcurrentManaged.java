@@ -5,6 +5,6 @@ import org.springframework.stereotype.Service;
 import com.gobliip.whisper.model.KeyboardStroke;
 
 @Service
-public class KeyboardStrokesRegistry extends SetRegistry<KeyboardStroke>{
+public class KeyboardStrokesRegistryConcurrentManaged extends ConcurrentManagedSetRegistry<KeyboardStroke> {
 
 }

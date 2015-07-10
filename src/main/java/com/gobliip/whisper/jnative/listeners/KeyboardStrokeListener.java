@@ -1,6 +1,8 @@
 package com.gobliip.whisper.jnative.listeners;
 
+import com.gobliip.whisper.jnative.GlobalScreenFacade;
 import com.gobliip.whisper.model.KeyboardStroke;
+import com.gobliip.whisper.service.KeyboardStrokesRegistryConcurrentManaged;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 import org.slf4j.Logger;
@@ -10,9 +12,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.gobliip.whisper.jnative.GlobalScreenFacade;
-import com.gobliip.whisper.service.KeyboardStrokesRegistry;
-
 import java.time.Instant;
 
 @Component
@@ -21,7 +20,7 @@ public class KeyboardStrokeListener implements NativeKeyListener, InitializingBe
 	private static final Logger logger = LoggerFactory.getLogger(KeyboardStrokeListener.class);
 
 	@Autowired
-	private KeyboardStrokesRegistry resgistry;
+	private KeyboardStrokesRegistryConcurrentManaged resgistry;
 
 	@Autowired
 	private GlobalScreenFacade globalScreen;

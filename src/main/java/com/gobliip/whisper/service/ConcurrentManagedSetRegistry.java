@@ -15,13 +15,14 @@ import org.springframework.jmx.export.annotation.ManagedResource;
  * Created by lsamayoa on 7/8/15.
  */
 @ManagedResource
-public class SetRegistry<T> implements DisposableBean {
+public class ConcurrentManagedSetRegistry<T> implements DisposableBean {
 	private Set<T> registryStore = new ConcurrentSkipListSet<>();
 
 	public void add(T register) {
 		registryStore.add(register);
 	}
 
+	@ManagedOperation
 	public void flush() {
 		synchronized (this.registryStore) {
 			registryStore.clear();
@@ -44,7 +45,7 @@ public class SetRegistry<T> implements DisposableBean {
 		}
 		return result;
 	}
-	
+
 	public Set<T> getData() {
 		return new LinkedHashSet<>(registryStore);
 	}
