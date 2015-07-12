@@ -2,7 +2,7 @@ package com.gobliip.whisper.jnative.listeners;
 
 import com.gobliip.whisper.jnative.GlobalScreenFacade;
 import com.gobliip.whisper.model.MouseAction;
-import com.gobliip.whisper.service.MouseActionsRegistryConcurrentManaged;
+import com.gobliip.whisper.service.MouseActionsRegistry;
 import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseListener;
 import org.springframework.beans.factory.DisposableBean;
@@ -21,7 +21,7 @@ public class MouseActionListener implements NativeMouseListener, InitializingBea
     private GlobalScreenFacade globalScreen;
 
     @Autowired
-    private MouseActionsRegistryConcurrentManaged mouseActionsRegistry;
+    private MouseActionsRegistry mouseActionsRegistry;
 
     @Override
     public void destroy() throws Exception {

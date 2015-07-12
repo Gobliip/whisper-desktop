@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
  * Created by lsamayoa on 7/8/15.
  */
 @Service
-public class MouseActionsRegistryConcurrentManaged extends ConcurrentManagedSetRegistry<MouseAction> {
+public class MouseActionsRegistry extends ConcurrentManagedSetRegistry<MouseAction> {
 }

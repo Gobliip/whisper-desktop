@@ -8,6 +8,6 @@ import com.gobliip.whisper.model.WorkMetric;
  * Created by lsamayoa on 7/8/15.
  */
 @Service
-public class WorkMetricsRegistryConcurrentManaged extends ConcurrentManagedSetRegistry<WorkMetric> {
+public class WorkMetricsRegistry extends ConcurrentManagedSetRegistry<WorkMetric> {
 
 }

@@ -18,13 +18,13 @@ public class WorkMetricCollector {
     private static final Logger LOGGER = LoggerFactory.getLogger(WorkMetricCollector.class);
 
     @Autowired
-    private KeyboardStrokesRegistryConcurrentManaged keyboardRegistry;
+    private KeyboardStrokesRegistry keyboardRegistry;
 
     @Autowired
-    private MouseActionsRegistryConcurrentManaged mouseRegistry;
+    private MouseActionsRegistry mouseRegistry;
 
     @Autowired
-    private WorkMetricsRegistryConcurrentManaged workRegistry;
+    private WorkMetricsRegistry workRegistry;
 
     private Instant lastCollection = Instant.now();
 
