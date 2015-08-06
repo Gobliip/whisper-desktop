@@ -1,6 +1,7 @@
 package com.gobliip.whisper.fx.support;
 
 import javafx.fxml.FXMLLoader;
+import javafx.util.Callback;
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
@@ -13,13 +14,12 @@ public class SpringFxmlLoader {
         this.context = context;
     }
 
-    public Object load(String url, Class<?> controllerClass) throws IOException {
+    public Object load(String url) throws IOException {
         InputStream fxmlStream = null;
         try {
             fxmlStream = ClassLoader.getSystemResourceAsStream(url);
-            Object instance = context.getBean(controllerClass);
             FXMLLoader loader = new FXMLLoader();
-            loader.getNamespace().put("controller", instance);
+            loader.setControllerFactory(context::getBean);
             return loader.load(fxmlStream);
         } finally {
             if (fxmlStream != null) {

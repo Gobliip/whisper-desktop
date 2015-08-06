@@ -14,11 +14,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Import({JmxAutoConfiguration.class})
 public class WhisperDesktopApplication {
 
-	public static void main(String[] args) {
-		SpringApplicationBuilder builder = new SpringApplicationBuilder(WhisperDesktopApplication.class)
+    public static void main(String[] args) {
+        SpringApplicationBuilder builder = new SpringApplicationBuilder(WhisperDesktopApplication.class)
                 .headless(false);
-                //.web(false);
-		ConfigurableApplicationContext ctx = builder.run(args);
-		//ctx.close();
-	}
+        //.web(false);
+        ConfigurableApplicationContext ctx = builder.run(args);
+        //ctx.close();
+    }
 }
