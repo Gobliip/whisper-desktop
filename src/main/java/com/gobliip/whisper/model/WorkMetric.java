@@ -16,12 +16,14 @@ public class WorkMetric implements Comparable<WorkMetric>, Serializable {
     final private Instant end;
     final private int keyboardStrokes;
     final private int mouseActions;
+    final byte[] screeImage;
     
-    public WorkMetric(Instant start, Instant end, int keyboardStrokes, int mouseActions) {
+    public WorkMetric(Instant start, Instant end, int keyboardStrokes, int mouseActions, byte[] screeImage) {
         this.start = start;
         this.end = end;
         this.keyboardStrokes = keyboardStrokes;
         this.mouseActions = mouseActions;
+        this.screeImage = screeImage;
     }
 
     public Instant getStart() {
@@ -38,6 +40,10 @@ public class WorkMetric implements Comparable<WorkMetric>, Serializable {
 
     public int getMouseActions() {
         return mouseActions;
+    }
+
+    public byte[] getScreeImage() {
+        return screeImage;
     }
 
     @Override

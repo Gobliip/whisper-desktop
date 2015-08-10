@@ -2,6 +2,7 @@ package com.gobliip.whisper.jnative.listeners;
 
 import com.gobliip.whisper.jnative.GlobalScreenFacade;
 import com.gobliip.whisper.model.MouseAction;
+import com.gobliip.whisper.service.StateManager;
 import com.gobliip.whisper.service.MouseActionsRegistry;
 import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseListener;
@@ -23,6 +24,9 @@ public class MouseActionListener implements NativeMouseListener, InitializingBea
     @Autowired
     private MouseActionsRegistry mouseActionsRegistry;
 
+    @Autowired
+    private StateManager applicationState;
+
     @Override
     public void destroy() throws Exception {
         globalScreen.removeNativeMouseListener(this);
@@ -35,7 +39,9 @@ public class MouseActionListener implements NativeMouseListener, InitializingBea
 
     @Override
     public void nativeMouseClicked(NativeMouseEvent nativeMouseEvent) {
-        mouseActionsRegistry.add(new MouseAction(Instant.now(), nativeMouseEvent.getX(), nativeMouseEvent.getY()));
+        if(applicationState.isTrackingActivity()) {
+            mouseActionsRegistry.add(new MouseAction(Instant.now(), nativeMouseEvent.getX(), nativeMouseEvent.getY()));
+        }
     }
 
     @Override
